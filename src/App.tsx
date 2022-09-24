@@ -1,24 +1,23 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { useState } from "react";
+import Row from "./Row";
 
 function App() {
+  const [nationalIds, setNationalIds] = useState([1, 2, 3, 4, 5]);
+
+  const handleNext = () => {
+    const temp: number[] = [];
+    nationalIds.forEach((id) => {
+      temp.push(id + 5);
+    });
+    console.log(temp);
+    setNationalIds(temp);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={handleNext}>Next</button>
+      {nationalIds.map((natId: number) => {
+        return <Row natId={natId} />;
+      })}
     </div>
   );
 }

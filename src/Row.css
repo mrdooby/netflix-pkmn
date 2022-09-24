@@ -1,0 +1,11 @@
+.row__poster {
+  max-height: 350px;
+  width: auto;
+  object-fit: contain;
+  padding: 15px;
+}
+
+.row__poster:hover {
+  transform: scale(1.08);
+  z-index: 1;
+}
