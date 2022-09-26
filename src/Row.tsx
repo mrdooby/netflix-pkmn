@@ -61,7 +61,9 @@ function Row() {
       <div className="row__posters">
         {cards?.map((card: any): ReactElement => {
           return (
-            <img className="row__poster" key={card.id} src={card.images.small} alt={card.name} />
+            <div>
+              <img className="row__poster" key={card.id} src={card.images.small} alt={card.name} />
+            </div>
           );
         })}
       </div>

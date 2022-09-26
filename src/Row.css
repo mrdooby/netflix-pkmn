@@ -24,4 +24,6 @@
 .row__poster:hover {
   transform: scale(1.08);
   z-index: 3;
+  filter: grayscale(0.7);
 }
+

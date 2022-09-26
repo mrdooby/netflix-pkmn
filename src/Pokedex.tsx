@@ -17,7 +17,6 @@ function Pokedex() {
           <Link to={`/pokedex/cards/${i + 1}`}>
             <div key={p.name} className="pokedex__block">
               <img className="pokedex__pkmn" src={p.sprite} alt={p.name} />
-              <div>{p.name}</div>
             </div>
           </Link>
         );

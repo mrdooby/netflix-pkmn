@@ -12,7 +12,7 @@
 
 .pokedex__pkmn {
   display: inline-block;
-  vertical-align:middle;
+  vertical-align: middle;
   object-fit: contain;
   max-height: 342px;
   transition: all 350ms;
