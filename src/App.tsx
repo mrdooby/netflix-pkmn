@@ -1,23 +1,20 @@
 import React, { useState } from "react";
 import Row from "./Row";
+import Pokedex from "./Pokedex";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 function App() {
-  const [nationalIds, setNationalIds] = useState([1, 2, 3, 4, 5]);
-
-  const handleNext = () => {
-    const temp: number[] = [];
-    nationalIds.forEach((id) => {
-      temp.push(id + 5);
-    });
-    console.log(temp);
-    setNationalIds(temp);
+  const navigateToCards = () => {
+    navigateToCards("/cards");
   };
   return (
     <div>
-      <button onClick={handleNext}>Next</button>
-      {nationalIds.map((natId: number) => {
-        return <Row natId={natId} />;
-      })}
+      <Pokedex />
+
+      <Routes>
+        <Route path="/contacts" element={<Row />} />
+        <Route path="/" element={<Pokedex />} />
+      </Routes>
     </div>
   );
 }

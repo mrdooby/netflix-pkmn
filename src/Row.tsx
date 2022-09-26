@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import axios, { AxiosResponse } from "axios";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import React, { useEffect, useState, ReactElement } from "react";
+import axios from "axios";
 import "./Row.css";
+
 interface RowProps {
   natId: number;
 }
@@ -10,19 +9,7 @@ interface RowProps {
 function Row({ natId }: RowProps) {
   const [cards, setCards] = useState([]);
   const [pkmnName, setPkmnName] = useState("");
-  const [width, setWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    try {
-      const handleResize = () => {
-        setWidth(window.innerWidth);
-      };
-
-      window.onresize = handleResize;
-    } catch (err) {
-      console.error(err);
-    }
-  }, [window.innerWidth]);
+  const [width, setWidth] = useState<number>(window.innerWidth);
 
   const getName = async (num: number) => {
     try {
@@ -69,27 +56,27 @@ function Row({ natId }: RowProps) {
     }
   }, [natId]);
 
+  useEffect(() => {
+    try {
+      const handleResize = async () => {
+        setWidth(window.innerWidth);
+      };
+      window.onresize = handleResize;
+    } catch (err) {
+      console.error(err);
+    }
+  }, []);
+
   return (
     <div className="row">
-      <h2>{pkmnName}</h2>
-      <Carousel
-        containerClass="row__container"
-        responsive={{
-          desktop: {
-            breakpoint: {
-              max: width,
-              min: 272
-            },
-            items: Math.floor(window.innerWidth / 272),
-            slidesToSlide: Math.floor(window.innerWidth / 272) - 1 || 1,
-            partialVisibilityGutter: 40
-          }
-        }}
-      >
-        {cards?.map((card: any) => {
-          return <img className="row__poster" key={card.id} src={card.images.small} />;
+      <h2 className="name">{pkmnName}</h2>
+      <div className="row__posters">
+        {cards?.map((card: any): ReactElement => {
+          return (
+            <img className="row__poster" key={card.id} src={card.images.small} alt={card.name} />
+          );
         })}
-      </Carousel>
+      </div>
     </div>
   );
 }
