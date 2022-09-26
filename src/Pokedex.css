@@ -2,27 +2,50 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding-top: 50px;
 }
 
 .pokedex__block {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 15px;
+  border: solid white 1px;
+  border-radius: 15px;
+  width: 252px;
+  height: 420px;
 }
 
-.pokedex__pkmn {
+.pokedex__block:hover {
+  transform: scale(1.08);
+}
+
+.pokedex__img {
   display: inline-block;
   vertical-align: middle;
   object-fit: contain;
-  max-height: 342px;
+  max-height: 350px;
   transition: all 350ms;
-  margin-right: 10px;
   width: 252px;
-  padding: 15px;
+  border: solid white 1px;
 }
 
-.pokedex__pkmn:hover {
-  transform: scale(1.08);
-  z-index: 3;
-  cursor: pointer;
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.pokedex__id {
+  width: 100%;
+  text-align: left;
+  margin-left: 15px;
+  margin-top: 5px;
+}
+
+.pokedex__flavor {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5%;
 }
