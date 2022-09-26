@@ -1,15 +1,14 @@
 import React, { useEffect, useState, ReactElement } from "react";
 import axios from "axios";
 import "./Row.css";
+import { useParams } from "react-router-dom";
 
-interface RowProps {
-  natId: number;
-}
-
-function Row({ natId }: RowProps) {
+function Row() {
   const [cards, setCards] = useState([]);
   const [pkmnName, setPkmnName] = useState("");
-  const [width, setWidth] = useState<number>(window.innerWidth);
+
+  const { nationalId } = useParams();
+  const natId = Number(nationalId);
 
   const getName = async (num: number) => {
     try {
@@ -55,17 +54,6 @@ function Row({ natId }: RowProps) {
       console.error(err);
     }
   }, [natId]);
-
-  useEffect(() => {
-    try {
-      const handleResize = async () => {
-        setWidth(window.innerWidth);
-      };
-      window.onresize = handleResize;
-    } catch (err) {
-      console.error(err);
-    }
-  }, []);
 
   return (
     <div className="row">

@@ -1,20 +1,14 @@
 import React, { useState } from "react";
 import Row from "./Row";
 import Pokedex from "./Pokedex";
-import { Routes, Route, useNavigate } from "react-router-dom";
-
+import List from "./List";
+import { Link, Outlet } from "react-router-dom";
 function App() {
-  const navigateToCards = () => {
-    navigateToCards("/cards");
-  };
   return (
     <div>
-      <Pokedex />
-
-      <Routes>
-        <Route path="/contacts" element={<Row />} />
-        <Route path="/" element={<Pokedex />} />
-      </Routes>
+      <Link to="/pokedex">Pokedex</Link>
+      <Link to="/list">List</Link>
+      <Outlet />
     </div>
   );
 }

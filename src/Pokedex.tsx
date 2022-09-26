@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Pokedex.css";
+import PokedexObj from "./PokedexObj";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 interface PkmnObj {
   name: string;
@@ -8,39 +10,16 @@ interface PkmnObj {
 }
 
 function Pokedex() {
-  const [pkmn, setPkmn] = useState<any>([]);
-
-  const getPkmn = async (num: number) => {
-    try {
-      const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${num}/`);
-      return { name: data.name, sprite: data.sprites.front_default };
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  useEffect(() => {
-    const nationalIds = Array.from(Array(151).keys()).slice(1);
-    try {
-      nationalIds.map((id) => {
-        getPkmn(id).then((res) => {
-          pkmn[id - 1] = res;
-          setPkmn(pkmn);
-        });
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  }, []);
-
   return (
     <div className="pokedex">
-      {pkmn.map((p: PkmnObj) => {
+      {PokedexObj.map((p: PkmnObj, i: number) => {
         return (
-          <div className="pokedex__block">
-            <img className="pokedex__pkmn" key={p.name} src={p.sprite} alt={p.name} />
-            <div>{p.name}</div>
-          </div>
+          <Link to={`/pokedex/cards/${i + 1}`}>
+            <div key={p.name} className="pokedex__block">
+              <img className="pokedex__pkmn" src={p.sprite} alt={p.name} />
+              <div>{p.name}</div>
+            </div>
+          </Link>
         );
       })}
     </div>
